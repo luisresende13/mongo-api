@@ -71,7 +71,7 @@ def create_record(database, collection):
     if type(record_data) is list:
         result = client[database][collection].insert_many(record_data)
         for inserted_id, data in zip(result.inserted_ids, record_data):
-            data['_id'] = inserted_id  # Add _id to each dict in the list
+            data['_id'] = str(inserted_id)  # Add _id to each dict in the list
     elif type(record_data) is dict:
         result = client[database][collection].insert_one(record_data)
         record_data['_id'] = str(result.inserted_id)  # Add _id to the posted dict
