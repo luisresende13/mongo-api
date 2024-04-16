@@ -96,6 +96,15 @@ def delete_record(database, collection, id):
     
     # Return the ID of the deleted record in the response
     return jsonify({"message": "Record deleted successfully", "deleted_record_id": id}), 200
+
+# Endpoint to delete a record from a collection by ID
+@app.route("/<string:database>/<string:collection>", methods=["DELETE"])
+def delete_all_records(database, collection):
+    # Delete the record from the collection
+    deleted_count = client[database][collection].delete_many({}).deleted_count
     
+    # Return the ID of the deleted record in the response
+    return jsonify({"message": "All records deleted successfully", "deleted_count": deleted_count}), 200
+
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))

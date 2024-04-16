@@ -1,6 +1,5 @@
 import os
 import requests
-from bson import ObjectId
 
 class MongoDB:
     def __init__(self, base_url="http://localhost:8080"):
@@ -47,6 +46,14 @@ class MongoDB:
     def delete_record(self, database, collection, record_id):
         try:
             url = f"{self.base_url}/{database}/{collection}/{record_id}"
+            response = requests.delete(url)
+            return self._handle_response(response)
+        except requests.RequestException as e:
+            return {"error": f"Request failed: {e}"}
+
+    def delete_records(self, database, collection):
+        try:
+            url = f"{self.base_url}/{database}/{collection}"
             response = requests.delete(url)
             return self._handle_response(response)
         except requests.RequestException as e:
