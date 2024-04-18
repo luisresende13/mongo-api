@@ -5,6 +5,9 @@
 # Navigate to the directory where you want to clone your Flask app repository and execute:
 # git clone https://github.com/luisresende13/mongo-api.git
 
+# Navigate to your Flask app directory
+# cd mongo-api
+
 # Update Package Lists:
 sudo apt update
 
@@ -13,7 +16,7 @@ sudo apt install python3-venv
 
 # Install Required Dependencies:
 # Navigate to your Flask app directory and install necessary dependencies. It's recommended to use a virtual environment:
-cd mongo-api
+# cd mongo-api
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
